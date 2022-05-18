@@ -62,6 +62,7 @@ textarea:focus {
 .todo-card {
   background-color: white;
   display: flex;
+  justify-content: space-between;
   width: 500px;
   margin: 20px auto;
   padding: 20px;
