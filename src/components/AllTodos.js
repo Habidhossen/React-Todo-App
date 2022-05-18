@@ -1,30 +1,19 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Todo from "./Todo";
 
 const AllTodos = () => {
   const [todoList, setTodoList] = useState([]);
-  //   const dummyData = [
-  //     {
-  //       id: 1,
-  //       name: "Sleeping",
-  //       desc: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, necessitatibus!",
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "playing",
-  //       desc: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, necessitatibus!",
-  //     },
-  //   ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const desc = event.target.desc.value;
-    const todo = { name: name, desc: desc };
-    const previous = [...todoList, todo];
-    setTodoList(previous);
+    const data = { id: uuidv4(), name: name, desc: desc };
+    const todo = [...todoList, data];
+    setTodoList(todo);
+    event.target.reset();
   };
-  //   console.log(todoList);
 
   return (
     <div>
@@ -33,13 +22,14 @@ const AllTodos = () => {
       </div>
       <div>
         <form onSubmit={handleSubmit} className="add-todo-container">
-          <input name="name" type="text" placeholder="Task name" />
+          <input name="name" type="text" placeholder="Task name" required />
           <textarea
             placeholder="Description"
             name="desc"
             id=""
             cols="30"
             rows="4"
+            required
           ></textarea>
           <button className="submit-btn" type="submit">
             Add Task
@@ -50,7 +40,7 @@ const AllTodos = () => {
         {/* {todoList.map((singleTodo) => (
           <Todo key={singleTodo.id} singleTodo={singleTodo} />
         ))} */}
-        <Todo todoList={todoList} />
+        <Todo todoList={todoList} setTodoList={setTodoList} />
       </div>
     </div>
   );
