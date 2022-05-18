@@ -1,25 +1,16 @@
 import React from "react";
 
-const Todo = () => {
+const Todo = ({ singleTodo }) => {
+  const { name, desc } = singleTodo;
+
   return (
-    <div>
-      <div className="navbar">
-        <h1>React Todo App</h1>
-      </div>
+    <div className="todo-card">
       <div>
-        <form className="add-todo-container">
-          <input type="text" placeholder="Task name" />
-          <textarea
-            placeholder="Description"
-            name=""
-            id=""
-            cols="30"
-            rows="4"
-          ></textarea>
-          <button className="submit-btn" type="submit">
-            Add Task
-          </button>
-        </form>
+        <h1 className="card-title">{name}</h1>
+        <p className="card-desc">{desc}</p>
+      </div>
+      <div className="right-div">
+        <h4 className="delete-btn">X</h4>
       </div>
     </div>
   );
